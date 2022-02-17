@@ -38,9 +38,9 @@ public class TTrayectoria extends TFuncion {
         //cX =+ rangoX.ajustar(maxX, rangoX.getActual());
         cX =+ rangoX.ajustar(maxX, rangoX.getActual());
 
-        cir.centrar(cX, cY);
+        //cir.centrar(cX, cY);
 
-        //dibujar(cX, cY);
+        dibujar(cX, cY);
         System.out.println("dibujar en x: " + cX + " y: " + cY);
     }
 
@@ -55,7 +55,7 @@ public class TTrayectoria extends TFuncion {
         if (rangoX.getActual() < base) {
             return (vX * 0.0174532925) * angulo;
         } else {
-            return (vX * 0.0174532925) * angulo;
+            return (-vX * 0.0174532925) * angulo;
         }
 
     }
