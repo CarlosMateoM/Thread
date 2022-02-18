@@ -45,7 +45,9 @@ public class Ventana extends javax.swing.JFrame {
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.BLACK);
-        g.drawRect(0 + 10 , 0 + 65, getWidth() -20, getHeight() - 80);
+        int wid = this.getContentPane().getWidth();
+        int hei = this.getContentPane().getHeight();
+        g.drawRect(0 + 10 , 0 + 70, wid -10 , hei -10);
     }
 
     /**

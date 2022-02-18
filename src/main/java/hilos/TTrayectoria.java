@@ -11,11 +11,14 @@ public class TTrayectoria extends TFuncion {
 
     private int base;
     private int altura;
+    private boolean bajar;
     private int nTriangulos;
+
     private javax.swing.JFrame frame;
 
     public TTrayectoria(javax.swing.JFrame frame) {
         super();
+        bajar = false;
         this.frame = frame;
         nTriangulos = 4;
         base = (frame.getWidth() / nTriangulos) / 2;
@@ -28,17 +31,21 @@ public class TTrayectoria extends TFuncion {
         g.setColor(Color.BLACK);
         g.fill(cir);
         g.draw(cir);
-    }
+    }   
 
     @Override
     public void mover(int maxX, int maxY) {
         int cX, cY;
-        cY =(maxY - 50) - (valorY(maxY));
+        if(bajar){
+            cY = maxY/2 - valorY(maxY)-200;
+        }else{
+            cY = maxY/2 - valorY(maxY);   
+        }
         //cY =- valorY(maxY);
         //cX =+ rangoX.ajustar(maxX, rangoX.getActual());
         cX =+ rangoX.ajustar(maxX, rangoX.getActual());
 
-        //cir.centrar(cX, cY);
+        ///cir.centrar(cX, cY);
 
         dibujar(cX, cY);
         System.out.println("dibujar en x: " + cX + " y: " + cY);
@@ -50,12 +57,21 @@ public class TTrayectoria extends TFuncion {
         //return -Math.abs(vX-100)*0.0174532925;
         //return (0.0174532925)*vX*1.01-3.04;
         //return -(0.0174532925)*vX*1.01-3.04;
+        
+        /**
+         * Función lineal : mx + b.
+         *  m : angulo formado por el triangulo. 
+         *  x : posición en x (Vx).
+         *  b : intersección con el eje y. 
+         */
+        
         double angulo;
             angulo = Math.atan(altura / base);
         if (rangoX.getActual() < base) {
             return (vX * 0.0174532925) * angulo;
         } else {
-            return (-vX * 0.0174532925) * angulo;
+            bajar = true;
+            return ((-vX * 0.0174532925) * angulo);
         }
 
     }
